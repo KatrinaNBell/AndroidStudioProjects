@@ -1,0 +1,26 @@
+notes for implementationL:
+
+TCP packet headers and storage channels:
+
+https://stackoverflow.com/questions/15557831/android-use-pcap-library
+
+'
+You need to wrap the calls and the logic you need out of libpcap in C or C++ and expose the underlying functions through JNI (Java Native Interface) so your application can call native code in Java.
+
+Use JNI 
+
+If you want to easily wrap native code in JNI you can use Swig which allow you to automatically generate JNI code based on your C/C++ native headers.
+
+The obtained JNI code should be compiled using the Android NDK as a dynamic library (.so). This library is to be placed in your application package under libs/. You can then invoke System.loadLibrary(path_to_you_dynamic_library) to load all the symbols contained in the library and use them in Java.
+
+Using a third-party library: this Provides an API to manipulate raw sockets in Java:
+
+http://www.savarese.com/software/rocksaw/
+
+OR
+
+Use jNetPcap.
+
+One problem you may have with any attempt to do packet capture on Android is that, by default, the underlying kernel mechanism used by libpcap (PF_PACKET sockets) requires root privileges. If there's a way to run your code as root, or to give it CAP_NET_RAW and possibly CAP_NET_ADMIN privileges, it might be possible to make it work.'
+
+NOTES TAKEN FROM ONLINE AND THE ARTICLES MENTIONED IN PLAN

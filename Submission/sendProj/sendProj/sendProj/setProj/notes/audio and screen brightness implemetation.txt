@@ -1,0 +1,32 @@
+Screen brightness/ Audio Implementation
+
+Attribute: SCREEN_BRIGHTNESS
++encoder set screen brightness with appropriete value to encode the required information
++ decoder can read the value to get info
+
+- any app can change the screen brightness from 0 - 2^8 when the SCREEN_BRIGHTNESS_MODE is at 0
+- an encoder can convert an information of length 8 bits to an integer which can be set as a screen brightness value.
+
+maybe: WAKE-LOCK prevent phone from sleeping
+page 11 soundcomber
+
+http://delivery.acm.org/10.1145/2430000/2420958/p51-marforio.pdf?ip=134.219.227.38&id=2420958&acc=ACTIVE%20SERVICE&key=BF07A2EE685417C5%2E8B22AE30E01D0947%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&CFID=1000978978&CFTOKEN=99021366&__acm__=1509551059_863bb12912305011b20515b77594c12f
+	
+
+Audio manager API
+
+Stream volume settings:
+STREAM ALARM, STREAM DTMF, STREAM MUSIC, STREAM NOTIFICATION, 
+STREAM RING, STREAM SYSTEM, STREAM VOICE CALL
+
++ get integer value on each componant using setStreamVolume. 
++ range of integer values allowed for each component can be obtained using the getStreamMaxVolume method
+A bit length is calculated as log2(#range), where #range is the number of discrete
+values in the range. For example, there are 16 discrete values in the range for
+component M. Therefore, its bit length is log2(16) = 4 i.e. 4 bits can be used
+to encode any of the 16 discrete values.
+
+
+
+
+NOTES MADE FROM MANY ARTICLES: THE ONES MENTION IN MY PLAN
